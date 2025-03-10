@@ -106,6 +106,15 @@ body {
     transition: background-color 0.3s ease-in-out;
     margin-top: 10px;
 }
+.added-button {
+    background-color: #808080;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 10px;
+}
 
 .product-button:hover {
     background-color: #c0392b;
