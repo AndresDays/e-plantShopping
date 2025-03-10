@@ -7,50 +7,43 @@ const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     let total = 0;
     cart.forEach(item => {
       const quantity = item.quantity;
-      const cost = parseFloat(item.cost.substring(1)); // Convert "$10.00" to 10.00
+      const cost = parseFloat(item.cost.replace('$', '')); // Asegurarse de que el costo esté correctamente procesado
       total += quantity * cost;
     });
     return total.toFixed(2);
   };
 
-  const handleContinueShopping = (e) => {
-    // Trigger the callback passed from the parent to navigate to the plant listing page
-    onContinueShopping(e);
+  const handleContinueShopping = () => {
+    if (onContinueShopping) onContinueShopping(); // Asegúrate de que la función se pasa correctamente
   };
 
-  const handleCheckoutShopping = (e) => {
-    alert('Functionality to be added for future reference');
+  const handleCheckoutShopping = () => {
+    alert('Funcionalidad a agregar para referencia futura');
   };
 
   const handleIncrement = (item) => {
-    // Dispatch updateQuantity action to increase the quantity of the item
     dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }));
   };
 
   const handleDecrement = (item) => {
-    // Decrement the quantity, but ensure it doesn't drop below 1
     if (item.quantity > 1) {
       dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }));
     } else {
-      // If quantity reaches 1 and user tries to decrement, remove the item
-      dispatch(removeItem({ id: item.id }));
+      dispatch(removeItem(item.id)); // Eliminamos el item si la cantidad llega a 1 y se quiere decrementar
     }
   };
 
   const handleRemove = (item) => {
-    // Dispatch removeItem action to delete the item from the cart
-    dispatch(removeItem({ id: item.id }));
+    dispatch(removeItem(item.id)); // Pasamos solo el id para eliminar el item
   };
 
-  // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
     const quantity = item.quantity;
-    const cost = parseFloat(item.cost.substring(1)); // Convert "$10.00" to 10.00
+    const cost = parseFloat(item.cost.replace('$', '')); // Asegurarse de que el costo esté correctamente procesado
     return (quantity * cost).toFixed(2);
   };
 
@@ -77,7 +70,7 @@ const CartItem = ({ onContinueShopping }) => {
       </div>
       <div style={{ marginTop: '20px', color: 'black' }} className='total_cart_amount'></div>
       <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
+        <button className="get-started-button" onClick={handleContinueShopping}>Continue Shopping</button>
         <br />
         <button className="get-started-button1" onClick={handleCheckoutShopping}>Checkout</button>
       </div>

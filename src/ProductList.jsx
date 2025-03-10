@@ -264,6 +264,7 @@ function ProductList({ onHomeClick }) {
            [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
          }));
       };
+    
 
     const cartItems = useSelector((state) => state.cart.items);
 
@@ -306,7 +307,7 @@ function ProductList({ onHomeClick }) {
                                     <img className="product-image" src={plant.image} alt={plant.name} />
                                     <div className="product-title">{plant.name}</div>
                                     {/*Similarly like the above plant.name show other details like description and cost*/}
-                                    <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                    <button  className="product-button" onClick={() => handleAddToCart(plant)}>{addedToCart[plant.name] ? "Added" : "Add to Cart"}</button>
                                 </div>
                                 ))}
                             </div>
