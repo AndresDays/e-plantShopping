@@ -10,7 +10,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-color: #f8f8f8;
+  background-color: #f6f4f4;
 }
 
 .background-image {
@@ -37,19 +37,14 @@
 }
 
 .landing_content {
- margin-top: 430px;
-  margin-left: 100px;
-  transform: translate(-50%, -50%);
-  z-index: 1;
   text-align: center;
-  /* background-color: red; */
-  width: 400px;
+  min-width: 350px;
   height: 400px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  overflow-y: auto;
 }
 
 .content p,
@@ -110,7 +105,30 @@
   backdrop-filter: blur(5px);
 }
 
+.product-list-container-dark{
+  position: absolute;
+  overflow-x: hidden;
+  top: 100vh;
+  /* Initially off-screen */
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(57, 57, 57, 0.9);
+  /* Adjust background opacity as needed */
+  transition: top 0.5s ease;
+  /* Smooth transition for top property */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
+  z-index: 2;
+  /* Ensure it's above landing page content */
+  backdrop-filter: blur(5px);
+}
+
 .product-list-container.visible {
+  top: 0;
+}
+
+.product-list-container-dark.visible {
   top: 0;
 }
 /* LandingPage.css */
@@ -123,25 +141,31 @@
   }
 
   .landing_content {
-    margin-top: 100px; /* Adjust as needed */
-    margin-left: 0;
-    width: 80%; /* Adjust as needed */
+    margin-top: 10px;
+    width: 100%; /* Adjust as needed */
+    height: 40%;
     text-align: center;
+    overflow-y: auto;
   }
 
   .aboutus_container {
     margin-top: 20px; /* Adjust as needed */
-    width: 80%; /* Adjust as needed */
+    width: 90%; /* Adjust as needed */
   }
 }
 
 @media screen and (max-width: 480px) {
   .landing_content {
+    height: 74%;
     margin-top: 50px; /* Adjust as needed */
     width: 90%; /* Adjust as needed */
   }
 
   .aboutus_container {
     width: 90%; /* Adjust as needed */
+  }
+
+  .landing_content p {
+    height: 20%;
   }
 }
