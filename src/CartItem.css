@@ -8,6 +8,9 @@
   background-color: white;
   width: 200px;
   gap: 30px;
+  max-width: auto;
+  max-height: 800px;
+  margin-bottom: 30px;
 }
 
 .cart-item-image {
